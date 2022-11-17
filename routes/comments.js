@@ -1,6 +1,6 @@
-import express from "express";
-import {  } from "../controllers/comment.js";
+const express = require("express");
+const {  } = require("../controllers/comment.js");
 
 const router = express.Router();
 
-export default router; 
+module.exports = router; 

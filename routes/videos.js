@@ -1,6 +1,6 @@
-import express from "express";
-import { addVideo, addView, deleteVideo, getVideo, random, trend, updateVideo } from "../controllers/video.js";
-import { verifyToken } from "../verifyToken.js";
+const express = require("express");
+const { addVideo, addView, deleteVideo, getVideo, random, trend, updateVideo } = require("../controllers/video.js");
+const { verifyToken } = require("../verifyToken.js");
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get("/trend", trend )
 router.get("/random",random )
 router.get("/sup", sup )
 
-export default router; 
+module.exports = router; 

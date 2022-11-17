@@ -1,6 +1,6 @@
-import express from "express";
-import { update,deleteUser, getUser, subscribe, unsubscribe, like, dislike } from "../controllers/user.js";
-import { verifyToken } from "../verifyToken.js";
+const express = require("express");
+const { update,deleteUser, getUser, subscribe, unsubscribe, like, dislike }= require("../controllers/user.js");
+const { verifyToken } = require("../verifyToken.js");
 
 const router = express.Router();
 
@@ -18,4 +18,5 @@ router.put("/unsub/:id" ,verifyToken, unsubscribe)
 router.put("/like/:videoId" ,verifyToken, like)
 //dislike a video 
 router.put("/dislike/:videoId" ,verifyToken, dislike)
-export default router;  
+
+module.exports = router;  

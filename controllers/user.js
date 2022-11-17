@@ -1,5 +1,5 @@
-import { createError } from "../error.js"
-import User from "../models/User.js"
+const { createError } = require("../error.js") 
+const User = require("../models/User.js")
 
 export const update = async (req, res, next)=>{ 
     if(req.params.id === req.user.id){
@@ -82,4 +82,3 @@ export const dislike = async (req, res, next)=> {
         next(err)
     }   
 }
-
