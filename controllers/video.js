@@ -1,9 +1,9 @@
-import User from "../models/User.js"
-import Video from "../models/Video"
-import { createError } from "../error.js"
-import updateVideo from "../controllers/video.js"
+const User =require("../models/User.js")
+const Video =require("../models/Video") 
+const { createError } =require("../error.js") 
+const updateVideo =require("../controllers/video.js") 
 
-export const addVideo = async (req,res,next) => {
+module.exports.addVideo = async (req,res,next) => {
    const newVideo = new Video({ userId: req.user.id, ...req.body })  
    try {
     const savedVideo = await newVideo.save();
@@ -12,7 +12,7 @@ export const addVideo = async (req,res,next) => {
     next(err)
    }
 }
-export const updateVideo = async (req,res,next) => {
+module.exports.updateVideo = async (req,res,next) => {
     try {
         const video = await Video.findById(req.params.id)
         if(!video) return next(createError(404, "Video not found!"))
@@ -32,7 +32,7 @@ export const updateVideo = async (req,res,next) => {
         next(err)
     } 
 }
-export const deleteVideo = async (req,res,next) => {
+module.exports.deleteVideo = async (req,res,next) => {
     try {
         const video = await Video.findById(req.params.id)
         if(!video) return next(createError(404, "The video has been deleted."))
@@ -49,7 +49,7 @@ export const deleteVideo = async (req,res,next) => {
 }   
 }
 
-export const getVideo = async (req,res,next) => {
+module.exports.getVideo = async (req,res,next) => {
     try {
         const video = await Video.findById(req.params.id)
         res.status(200).json(video)
@@ -58,7 +58,7 @@ export const getVideo = async (req,res,next) => {
     }  
 }
 
-export const addView = async (req,res,next) => {
+module.exports.addView = async (req,res,next) => {
     try {
         await Video.findByIdAndUpdate(req.params.id,{
             $inc:{views:1}
@@ -69,7 +69,7 @@ export const addView = async (req,res,next) => {
     }  
 }
 
-export const random = async (req,res,next) => {
+module.exports.random = async (req,res,next) => {
     try {
         const videos = await Video.aggregate([{$sample:{size: 40}}]);
         res.status(200).json(videos);
@@ -78,7 +78,7 @@ export const random = async (req,res,next) => {
     }   
 }
 
-export const trend = async (req,res,next) => {
+module.exports.trend = async (req,res,next) => {
     try {
         const videos = await Video.find().sort({views:-1});
         res.status(200).json(videos);
@@ -87,7 +87,7 @@ export const trend = async (req,res,next) => {
     }   
 }
 
-export const sup = async (req,res,next) => {
+module.exports.sup = async (req,res,next) => {
     try {
         const video = await Video.findById(req.params.id)
         res.status(200).json(video)
