@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { isEmail } = require("validator")
 
 
@@ -37,4 +37,4 @@ const UserSchema = new mongoose.Schema({
 {timestamps: true }
 );
 
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);
