@@ -12,6 +12,5 @@ router.get("/find/:id", verifyToken, getVideo )
 router.put("/view/:id", addView )
 router.get("/trend", trend )
 router.get("/random",random )
-router.get("/sup", sup )
 
-module.exports = router; 
+module.exports = router;

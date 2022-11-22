@@ -1,7 +1,7 @@
 const { createError } = require("../error.js") 
 const User = require("../models/User.js")
 
-export const update = async (req, res, next)=>{ 
+module.exports.update = async (req, res, next)=>{ 
     if(req.params.id === req.user.id){
         try {
             const updatedUser =  await User.findByIdAndUpdate(req.params.id,{
@@ -17,7 +17,8 @@ export const update = async (req, res, next)=>{
     }
 };
 
-export const deleteUser = async (req, res, next)=> {   
+
+module.exports.deleteUser = async (req, res, next)=> {   
     if(req.params.id === req.user.id){
         try {
             await User.findByIdAndDelete(req.params.id)      
@@ -30,7 +31,7 @@ export const deleteUser = async (req, res, next)=> {
     } 
 }
 
-export const getUser = async (req,res,next)=> { 
+module.exports.getUser = async (req,res,next)=> { 
     try {
         const user = await User.findById(req.params.id)
             res.status(200).json(user)
@@ -39,7 +40,8 @@ export const getUser = async (req,res,next)=> {
     }   
 }
 
-export const subscribe = async (req, res, next)=> {  
+
+module.exports.subscribe = async (req, res, next)=> {  
     try {
         await User.findById(req.user.id, {
             $push:{subscribedUsers: req.params.id},
@@ -53,7 +55,7 @@ export const subscribe = async (req, res, next)=> {
     }     
 }
 
-export const unsubscribe = async (req, res, next)=> {  
+module.exports.unsubscribe = async (req, res, next)=> {  
     try {
         await User.findById(req.user.id, {
             $pull:{subscribedUsers: req.params.id},
@@ -67,7 +69,7 @@ export const unsubscribe = async (req, res, next)=> {
     }     
 }
 
-export const like = async (req, res, next)=> {  
+module.exports.like = async (req, res, next)=> {  
     try {
         
     } catch (err) {
@@ -75,7 +77,8 @@ export const like = async (req, res, next)=> {
     }     
 }
 
-export const dislike = async (req, res, next)=> {    
+
+module.exports.dislike = async (req, res, next)=> {    
     try {
         
     } catch (err) {

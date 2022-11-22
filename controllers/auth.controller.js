@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/User.js");
 const bcrypt = require("bcryptjs");
-const { createError } = require("../error.js");
+const createError = require("../error.js");
 const  jwt  = require("jsonwebtoken");
 
 module.exports.signup = async (req, res, next)=> {
@@ -27,12 +27,11 @@ module.exports.signin  = async (req, res, next)=> {
        if(!isCorrect) return next(createError(400, "Password incorrect!"))
 
        const token = jwt.sign({id:user._id}, process.env.JWT)
-       const {password, ...others} = user._doc
 
        res.cookie("access_token", token, {
         httpOnly:true
        }).status(200)
-       .json(others) 
+       .json(user)
     } catch (err) {
         next(err)
     }
