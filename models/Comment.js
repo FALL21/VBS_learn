@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const CommentSchema = new mongoose.Schema({
     
     userId: {
-        type: String,
-        require: true,
+        type: mongoose.Types.ObjectId,
+        ref: "User"
     },
     videoId: {
+        type: mongoose.Types.ObjectId,
+        ref:'User'
+    },
+    description: {
         type: String,
         require: true,
     },
-    desc: {
-        type: String,
-        require: true,
-    }, 
 },
 {timestamps: true }
 );

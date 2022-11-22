@@ -87,11 +87,3 @@ module.exports.trend = async (req,res,next) => {
     }   
 }
 
-module.exports.sup = async (req,res,next) => {
-    try {
-        const video = await Video.findById(req.params.id)
-        res.status(200).json(video)
-    } catch (err) {
-        next(err) 
-    }   
-}

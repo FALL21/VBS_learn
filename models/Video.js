@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const VideoSchema = new mongoose.Schema({
     
@@ -30,7 +30,7 @@ const VideoSchema = new mongoose.Schema({
         type: String,
         default: []
     },
-    dislinkes: {
+    dislikes: {
         type: String,
         default: []
     },
@@ -38,4 +38,4 @@ const VideoSchema = new mongoose.Schema({
 {timestamps: true }
 );
 
-export default mongoose.model("Video", VideoSchema);
+module.exports = mongoose.model("Video", VideoSchema);
