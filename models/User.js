@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { isEmail } = require("validator")
 
 
@@ -26,10 +26,6 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default:0
     },
-    subscribers: {
-        type: Number,
-        default:0
-    },
     subscribedUsers: {
         type: [String],
     },
@@ -37,4 +33,4 @@ const UserSchema = new mongoose.Schema({
 {timestamps: true }
 );
 
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

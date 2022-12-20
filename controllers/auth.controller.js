@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
-import User from "../models/User.js"
-import bcrypt from "bcryptjs"
-import { createError } from "../error.js";
-import  jwt  from "jsonwebtoken";
+const mongoose = require("mongoose");
+const User = require("../models/User.js");
+const bcrypt = require("bcryptjs");
+const createError = require("../error.js");
+const  jwt  = require("jsonwebtoken");
 
-export const signup = async (req, res, next)=> {
+module.exports.signup = async (req, res, next)=> {
     
     try {
         const salt =bcrypt.genSaltSync(10);
@@ -17,7 +17,7 @@ export const signup = async (req, res, next)=> {
         next(err)
     }
 }
-export const signin  = async (req, res, next)=> {
+module.exports.signin  = async (req, res, next)=> {
     
     try {
        const user = await User.findOne({name:req.body.name})
@@ -31,7 +31,7 @@ export const signin  = async (req, res, next)=> {
        res.cookie("access_token", token, {
         httpOnly:true
        }).status(200)
-       .json(user) 
+       .json(user)
     } catch (err) {
         next(err)
     }
